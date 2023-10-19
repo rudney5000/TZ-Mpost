@@ -1,90 +1,39 @@
 import React from "react";
-import {Input} from "@/components/layout/Input";
-import {
-    Button,
-    Card,
-    Checkbox,
-    Typography
-} from "@material-tailwind/react";
+
 import {Link} from "react-router-dom";
+import SignInForm from "./SignInForm";
 
 
 export default function login() {
     return (
-        <div className="flex items-center justify-center">
-        <Card color="transparent" className="m-6 text-gray-900 dark:text-white flex justify-center rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-blue-950">
-            <Typography variant="h4" color="blue-gray">
-                Sign Up
-            </Typography>
-            <Typography color="gray" className="mt-1 font-normal">
-                Nice to meet you! Enter your details to register.
-            </Typography>
-            <form className="mt-8 mb-6 w-80 max-w-screen-lg sm:w-96">
-                <div className="mb-1 flex flex-col gap-6">
-                    <Typography variant="h6" color="blue-gray" className="-mb-3 font-medium text-gray-900 dark:text-white">
-                        Your Name
-                    </Typography>
-                    <Input
-                        size="lg"
-                        placeholder="name@mail.com"
-                        className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-                        labelProps={{
-                            className: "before:content-none after:content-none",
-                        }}
-                    />
-                    <Typography variant="h6" color="blue-gray" className="-mb-3">
-                        Your Email
-                    </Typography>
-                    <Input
-                        size="lg"
-                        placeholder="name@mail.com"
-                        className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-                        labelProps={{
-                            className: "before:content-none after:content-none",
-                        }}
-                    />
-                    <Typography variant="h6" color="blue-gray" className="-mb-3">
-                        Password
-                    </Typography>
-                    <Input
-                        type="password"
-                        size="lg"
-                        placeholder="********"
-                        className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-                        labelProps={{
-                            className: "before:content-none after:content-none",
-                        }}
-                    />
-                </div>
-                <Checkbox
-                    label={
-                        <Typography
-                            variant="small"
-                            color="gray"
-                            className="flex items-center font-normal"
-                        >
-                            I agree the
-                            <a
-                                href="#"
-                                className="font-medium transition-colors hover:text-gray-900"
-                            >
-                                &nbsp;Terms and Conditions
-                            </a>
-                        </Typography>
-                    }
-                    containerProps={{ className: "-ml-2.5" }}
-                />
-                <Button className="mt-6" fullWidth>
-                    sign up
-                </Button>
-                <Typography color="gray" className="mt-4 text-center font-normal">
-                    Already have an account?{" "}
-                    <Link to="/register" className="font-medium text-gray-900 ">
-                        Sign In
-                    </Link>
-                </Typography>
-            </form>
-        </Card>
-        </div>
+        // <div className="h-[100vh] bg-blue-950 m-0 ">
+        //     <div className="container flex flex-col m-auto mt bg-white pb-[10px] w-[600px]">
+        //         <div className="header flex flex-col text-center mt-[30px]">
+        //             <div className="text text-violet-950 text-[48px] font-bold">Sign Up</div>
+        //             <div className="underline w-[61px] h-[6px] bg-violet-950 rounded-md"></div>
+        //         </div>
+        //         <div className="inputs mt-[55px] flex flex-col gap-6">
+        //             <div className="input flex items-center m-auto w-[480px] h-[80px] bg-gray-100 rounded-md">
+        //                 <input type="text" className="px-6 h-[50px] w-[400px] bg-transparent border-none outline-none bg-gray-100 text-[19px]" placeholder="name"/>
+        //             </div>
+        //             <div className="input flex items-center m-auto w-[480px] h-[80px] bg-gray-100 rounded-md">
+        //                 <input type="text" className="px-6 h-[50px] w-[400px] bg-transparent border-none outline-none bg-gray-100 text-[19px]" placeholder="email"/>
+        //             </div>
+        //             <div className="input flex items-center m-auto w-[480px] h-[80px] bg-gray-100 rounded-md">
+        //                 <input type="password" className="px-6 h-[50px] w-[400px] bg-transparent border-none outline-none bg-gray-100 text-[19px]" placeholder="password"/>
+        //             </div>
+        //         </div>
+        //         <div className="forgot-password pl-[62px] mt-[27px] text-gray-600 text-[16px] font-bold">
+        //             Lost Password?
+        //             <span className="text-blue-900 cursor-pointer">Click Here!</span>
+        //         </div>
+        //         <div className="submit-container flex gap-4 mx-auto my-6">
+        //             <div className="submit">Sign Up</div>
+        //             <div className="submit">Login</div>
+        //         </div>
+        //     </div>
+        // </div>
+
+        <SignInForm/>
     );
 }
