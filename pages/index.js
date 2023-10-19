@@ -1,6 +1,6 @@
 import PredictionPage from "@/components/mainpagss/PredictionPage";
-import LoginPage from "@/components/mainpagss/authPages/login/LoginPage"
-import RegisterPage from "@/components/mainpagss/authPages/register/RegisterPage"
+import LoginPage from "@/components/mainpagss/authPages/login/LoginPage";
+import RegisterPage from "@/components/mainpagss/authPages/register/RegisterPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useEffect, useState } from "react";
 
