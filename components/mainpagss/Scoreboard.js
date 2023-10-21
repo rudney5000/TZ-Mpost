@@ -31,7 +31,7 @@ export default function Scoreboard() {
                 {users?.map((user) => (
                     <div
                         key={user.id}
-                        className="flex items-center justify-between p-4 m bg-purple-900 shadow text-white rounded-lg my-2"
+                        className="flex items-center justify-between p-4 m bg-purple-900 shadow text-white rounded-lg my-8"
                     >
                         <div>
                             <h2 className="text-lg font-bold">{user.name}</h2>
@@ -45,18 +45,3 @@ export default function Scoreboard() {
         </>
     )
 }
-
-// <div key={user.id} className="flex items-center justify-between p-4 bg-white shadow rounded-lg my-2">
-
-// <div>
-//   <h2 className="text-lg font-bold">{user.name}</h2>
-// </div>
-
-// <div className="text-xl font-semibold">
-//   {user.score}
-// </div>
-
-// </div>
-// ))}
-
-// </div>
