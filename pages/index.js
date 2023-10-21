@@ -1,36 +1,41 @@
-import PredictionPage from "@/components/mainpagss/PredictionPage";
-import LoginPage from "@/components/mainpagss/authPages/login/LoginPage";
-import RegisterPage from "@/components/mainpagss/authPages/register/RegisterPage";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { useEffect, useState } from "react";
+import PredictionPage from "@/components/mainpagss/PredictionPage"
+import LoginPage from "@/components/mainpagss/authPages/login/LoginPage"
+import RegisterPage from "@/components/mainpagss/authPages/register/RegisterPage"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { useEffect, useState } from "react"
+import Scoreboard from "@/components/mainpagss/Scoreboard"
 
 const Home = () => {
-    const [isClient, setIsClient] = useState(false);
+    const [isClient, setIsClient] = useState(false)
 
     useEffect(() => {
-        setIsClient(true);
-    }, []);
+        setIsClient(true)
+    }, [])
 
     if (!isClient) {
-        return null;
+        return null
     }
 
     const router = createBrowserRouter([
         {
-            path: '/',
-            element: <PredictionPage />
+            path: "/",
+            element: <PredictionPage />,
         },
         {
-            path: '/login',
-            element: <LoginPage/>
+            path: "/login",
+            element: <LoginPage />,
         },
         {
-            path: '/register',
-            element: <RegisterPage/>
-        }
-    ]);
+            path: "/register",
+            element: <RegisterPage />,
+        },
+        {
+            path: "/scoreboard",
+            element: <Scoreboard />,
+        },
+    ])
 
-    return <RouterProvider router={router} />;
-};
+    return <RouterProvider router={router} />
+}
 
-export default Home;
+export default Home
