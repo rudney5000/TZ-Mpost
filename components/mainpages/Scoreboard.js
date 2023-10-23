@@ -1,25 +1,4 @@
-export default function Scoreboard() {
-    const users = [
-        {
-            id: 1,
-            name: "Alice",
-            profit: 100,
-            winningRate: `${60}%`,
-        },
-        {
-            id: 1,
-            name: "Bob",
-            profit: 80,
-            winningRate: `${40}%`,
-        },
-        {
-            id: 1,
-            name: "Alice",
-            profit: 50,
-            winningRate: `${20}%`,
-        },
-    ]
-
+export default function Scoreboard({ users, prediction }) {
     return (
         <>
             <div className="max-w-lg mx-auto py-10">
@@ -42,6 +21,7 @@ export default function Scoreboard() {
                     </div>
                 ))}
             </div>
+            {prediction}
         </>
     )
 }
