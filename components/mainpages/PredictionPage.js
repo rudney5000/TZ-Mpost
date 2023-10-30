@@ -7,7 +7,6 @@ export default function PredictionPage() {
     return (
         <>
             <SubNavbar />
-
             <Bet />
         </>
     )
