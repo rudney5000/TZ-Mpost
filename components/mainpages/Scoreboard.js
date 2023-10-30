@@ -1,6 +1,8 @@
+import SubNavbar from "../layout/SubNavbar"
 export default function Scoreboard({ users, prediction }) {
     return (
         <>
+            <SubNavbar />
             <div className="max-w-lg mx-auto py-10">
                 <div className="flex flex-row justify-between  font-bold">
                     <h2>Name</h2>
