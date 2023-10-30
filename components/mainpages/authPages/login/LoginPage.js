@@ -34,6 +34,8 @@ export default function login() {
         //     </div>
         // </div>
 
-        <SignInForm/>
+        <div className=" flex justify-center ">
+            <SignInForm />
+        </div>
     );
 }

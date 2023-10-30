@@ -1,77 +1,91 @@
-import React from "react";
-import { Link } from "react-router-dom";
+"use client";
+
 import { useForm } from 'react-hook-form';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../../../ui/form';
-import * as z from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Input } from '../../../ui/input';
-import { Button } from '../../../ui/button';
+import { useRouter } from "next/router";
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Link } from 'react-router-dom';
 
-import GoogleSignInButton from '../../../ui/GoogleSignInButton';
-
-const FormSchema = z.object({
-  email: z.string().min(1, 'Email is required').email('Invalid email'),
-  password: z
-    .string()
-    .min(1, 'Password is required')
-    .min(8, 'Password must have than 8 characters'),
+let validationSchema = yup.object({
+  email: yup.string().required('Email is required').email('Invalid Email'),
+  password: yup.string().required().min(6).max(32)
 });
 
 const SignInForm = () => {
-  const form = useForm();
-  const { handleSubmit, control } = form;
+  const router = useRouter();
+  const { setError, reset, register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(validationSchema)
+  });
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const handleFormSubmit = async data => {
+    try {
+      // Logique de soumission
+      
+      const response = await fetch('http://localhost:3000/api/hello', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+  
+      if (response.ok) {
+        // Réinitialiser le formulaire après la soumission
+        document.getElementById('myForm').reset();
+  
+        // Rediriger l'utilisateur vers une autre page
+        router.push('/prediction');
+      } else {
+        setError('email', { message: 'Erreur lors de la connexion ffdfdff', type: 'error' });
+      }
+    } catch (error) {
+      // Gérer les erreurs de soumission
+      console.error('Erreur lors de la connexion', error);
+      setError('email', { message: 'Erreur lors de la connexion', type: 'error' });
+    }
   };
 
   return (
-    <Form resolver={zodResolver(FormSchema)} defaultValues={{ email: '', password: '' }} onSubmit={handleSubmit(onSubmit)} className='w-full'>
-      <div className='space-y-2'>
-        <FormField control={control} name='email'>
-          {({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder='mail@example.com' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        </FormField>
-        <FormField control={control} name='password'>
-          {({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input type='password' placeholder='Enter your password' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        </FormField>
-      </div>
-      <Button className='w-full mt-6' type='submit'>
-        Sign in
-      </Button>
-      <div className='mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400'>
-        or
-      </div>
-      <GoogleSignInButton>Sign in with Google</GoogleSignInButton>
-      <p className='text-center text-sm text-gray-600 mt-2'>
-        If you don&apos;t have an account, please&nbsp;
-        <Link className='text-blue-500 hover:underline' to='/register'>
-          Sign up
-        </Link>
-      </p>
-    </Form>
+    <div>
+      <form id="myForm" onSubmit={handleSubmit(handleFormSubmit)} autoComplete="off">
+        <div className="mb-2">
+          <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+          <input
+            type="email"
+            id="email"
+            {...register('email')}
+            placeholder='Email'
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+          {errors['email'] ? (
+            <div className='text-sm text-red-500'>{errors['email'].message}</div>
+          ) : null}
+        </div>
+        <div className="mb-4">
+          <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+          <input
+            type="password"
+            id="password"
+            {...register('password')}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+          {errors['password'] ? (
+            <div className='text-sm text-red-500'>{errors['password'].message}</div>
+          ) : null}
+        </div>
+        <div className="submit-container flex gap-4 mx-auto my-6">
+            <Link to="/register" className="submit text-white bg-blue-700 px-5 py-2.5 mr-2 mb-2 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Sign Up</Link>
+            <Link to="/" className="submit text-white bg-blue-700 px-5 py-2.5 mr-2 mb-2 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Login</Link>
+        </div>
+        {/* <button
+          type="submit"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        >
+          Login
+        </button> */}
+        
+      </form>
+    </div>
   );
 };
 

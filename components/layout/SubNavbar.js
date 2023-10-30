@@ -19,7 +19,13 @@ export default function SubNavbar() {
                     <Link to="/login" className="flex-row">
                         <span className="flex flex-row items-center">
                             <BsArrowRight class="mr-3" />
-                            login
+                            Login
+                        </span>
+                    </Link>
+                    <Link to="/register" className="flex-row">
+                        <span className="flex flex-row items-center">
+                            <BsArrowRight class="mr-3" />
+                            Register
                         </span>
                     </Link>
                 </li>
